@@ -15,8 +15,8 @@ public class AddToCart {
 	static WebDriver driver ;
 
 	public static void main(String[] args) throws InterruptedException {
-		
-		String[] itemsNeeded = {"Carrot","Beans","Cucumber"};
+		int j=0;
+		String[] itemsNeeded = {"Carrot","Beans","Cucumber","Beetroot","Cauliflower"};
 		driver = WebDriverManager.chromedriver().create();
 		driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
 		driver.manage().window().maximize();
@@ -32,7 +32,11 @@ public class AddToCart {
 			List itemsPick = Arrays.asList(itemsNeeded);
 			
 			if(itemsPick.contains(formattedName)) {
-				driver.findElements(By.xpath("//button[text()='ADD TO CART']")).get(i).click();
+				j++;
+				driver.findElements(By.xpath("//div[@class='product-action']")).get(i).click();
+				if(j==itemsNeeded.length) {
+					break;
+				}
 			}
 		}
 	
